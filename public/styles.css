@@ -37,7 +37,8 @@ html[data-access="locked"] body > :not(.access-gate) { visibility: hidden; }
 .access-gate { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; overflow-y: auto; padding: 32px 20px; background: radial-gradient(circle at 50% 8%, #d4f3fb 0, transparent 29rem), var(--paper); visibility: visible; }
 .access-gate::before { content: ""; position: fixed; left: 50%; top: 50%; width: min(740px, 88vw); aspect-ratio: 1; border: 52px solid #08a8d80d; border-right-color: #08a8d824; border-bottom-color: transparent; border-radius: 50%; transform: translate(-50%, -50%) rotate(-22deg); pointer-events: none; }
 .access-panel { position: relative; width: min(480px, 100%); padding: 38px 42px 34px; border: 1px solid #ffffffd6; border-radius: 25px; background: #ffffffd4; box-shadow: 0 28px 75px -48px #0755758a, 0 3px 12px #0e49650b; backdrop-filter: blur(20px); }
-.access-logo { width: 210px; height: auto; margin-bottom: 27px; }
+.access-logo-wrap { position: relative; width: 210px; margin-bottom: 27px; isolation: isolate; }
+.access-logo { width: 100%; height: auto; }
 .access-eyebrow { display: flex; align-items: center; gap: 8px; color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: .16em; }
 .access-eyebrow > span { width: 7px; height: 7px; border-radius: 2px; background: var(--red); transform: rotate(8deg); }
 .access-panel h2 { margin-top: 15px; font-size: 34px; line-height: 1.28; letter-spacing: -.05em; }
@@ -174,7 +175,7 @@ body:has(dialog[open]) { overflow: hidden; }
   .access-gate { padding: 20px 15px; }
   .access-gate::before { width: 128vw; border-width: 36px; }
   .access-panel { padding: 30px 24px 27px; border-radius: 21px; }
-  .access-logo { width: 180px; margin-bottom: 23px; }
+  .access-logo-wrap { width: 180px; margin-bottom: 23px; }
   .access-panel h2 { font-size: 29px; }
   .access-copy br { display: none; }
   .site-header { min-height: 98px; gap: 14px; }

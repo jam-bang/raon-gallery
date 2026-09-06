@@ -21,38 +21,52 @@
 }
 .brand-aura-orbit {
   position: absolute;
-  right: 1%;
-  top: 50%;
-  width: 35%;
-  aspect-ratio: 1;
-  transform: translateY(-50%);
+  z-index: 2;
+  inset: -13% -4%;
   pointer-events: none;
 }
 .brand-aura-light {
   position: absolute;
-  inset: 0;
-  animation: logo-light-orbit 12s linear infinite;
-}
-.brand-aura-light::before {
-  content: "";
-  position: absolute;
-  left: calc(50% - 2.5px);
-  top: -2.5px;
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 3px 1px #fff, 0 0 8px 2px #8de8ffbd, 0 0 17px 4px #22bce350;
+  box-shadow: 0 0 3px 1px #fff, 0 0 9px 3px #8de8ffcc, 0 0 19px 5px #22bce34f;
+  opacity: 0;
+  will-change: left, top, opacity, transform;
 }
-.brand-aura-light::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: conic-gradient(transparent 0deg 275deg, #68bddb12 300deg, #8bd5ef66 342deg, #ffffffeb 360deg);
-  mask-image: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - .5px));
+.brand-aura-light.light-one { animation: logo-light-wander-one 8.7s cubic-bezier(.45, 0, .25, 1) -2.1s infinite; }
+.brand-aura-light.light-two { width: 3px; height: 3px; background: #d9f8ff; box-shadow: 0 0 3px 1px #fff, 0 0 10px 3px #20bde6a8; animation: logo-light-wander-two 11.3s ease-in-out -7.4s infinite; }
+.brand-aura-light.light-three { width: 4px; height: 4px; box-shadow: 0 0 4px 1px #fff, 0 0 13px 4px #73ddf7a8; animation: logo-light-wander-three 6.9s ease-in-out -4.6s infinite; }
+.brand-aura-light.light-four { width: 2px; height: 2px; background: #ffe7df; box-shadow: 0 0 3px 1px #fff, 0 0 10px 3px #d641355c; animation: logo-light-wander-four 13.1s ease-in-out -9.2s infinite; }
+@keyframes logo-light-wander-one {
+  0%, 100% { left: 3%; top: 70%; opacity: 0; transform: scale(.45); }
+  11% { opacity: .95; }
+  34% { left: 31%; top: 5%; opacity: .72; transform: scale(1); }
+  61% { left: 72%; top: 22%; opacity: 1; transform: scale(1.25); }
+  84% { left: 97%; top: 66%; opacity: .38; transform: scale(.65); }
 }
-@keyframes logo-light-orbit { to { transform: rotate(1turn); } }
+@keyframes logo-light-wander-two {
+  0%, 100% { left: 84%; top: 94%; opacity: 0; transform: scale(.5); }
+  16% { opacity: .78; }
+  39% { left: 98%; top: 31%; opacity: .95; transform: scale(1.35); }
+  67% { left: 54%; top: -2%; opacity: .62; transform: scale(.8); }
+  88% { left: 14%; top: 34%; opacity: .9; transform: scale(1.1); }
+}
+@keyframes logo-light-wander-three {
+  0%, 100% { left: 38%; top: 101%; opacity: 0; transform: scale(.4); }
+  13% { opacity: .76; }
+  42% { left: 8%; top: 56%; opacity: 1; transform: scale(1.15); }
+  72% { left: 46%; top: 11%; opacity: .5; transform: scale(.7); }
+  91% { left: 91%; top: 42%; opacity: .85; transform: scale(1); }
+}
+@keyframes logo-light-wander-four {
+  0%, 100% { left: 103%; top: 58%; opacity: 0; transform: scale(.5); }
+  18% { opacity: .7; }
+  45% { left: 68%; top: 96%; opacity: .9; transform: scale(1.3); }
+  73% { left: 23%; top: 78%; opacity: .42; transform: scale(.75); }
+  92% { left: -1%; top: 24%; opacity: .8; transform: scale(1); }
+}
 .brand-logo {
   position: relative;
   z-index: 1;
@@ -117,7 +131,7 @@
 @media (max-width: 760px) {
   .brand-aura { width: 74px; height: 74px; }
   .brand-aura::before { right: -9%; top: -9%; width: 118%; height: 118%; }
-  .brand-aura-orbit { left: 50%; right: auto; width: 82%; transform: translate(-50%, -50%); }
+  .brand-aura-orbit { inset: -9%; }
   .brand-logo { width: 74px; height: 74px; }
   .cover-carousel { aspect-ratio: 1.75; border-radius: 17px; }
   .cover-caption { padding: 45px 16px 15px; gap: 10px; }
@@ -131,8 +145,11 @@
   .cover-controls button { width: 38px; height: 38px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .brand-aura-light { animation: none; }
-  .brand-aura-light::after { opacity: .4; }
+  .brand-aura-light { animation: none !important; opacity: .45; }
+  .brand-aura-light.light-one { left: 16%; top: 12%; }
+  .brand-aura-light.light-two { left: 88%; top: 30%; }
+  .brand-aura-light.light-three { left: 54%; top: 92%; }
+  .brand-aura-light.light-four { left: 4%; top: 68%; }
   .cover-slide { transition: none; }
   .cover-slide img { animation: none; }
 }
