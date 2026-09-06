@@ -44,7 +44,9 @@ h1, h2, p { margin: 0; }
 h1 { margin: 24px 0; font-size: clamp(42px, 4.65vw, 66px); line-height: 1.1; font-weight: 800; letter-spacing: -.065em; word-break: keep-all; }
 h1 span { display: block; margin-top: 17px; color: var(--blue); font-size: .5em; font-weight: 600; letter-spacing: -.045em; line-height: 1.35; }
 .event-title { color: #526370; font-size: 14px; line-height: 1.8; word-break: keep-all; }
-.intro-note { margin-top: 22px; color: var(--muted); font-size: 15px; line-height: 1.85; }
+.gratitude-note { margin-top: 24px; padding-left: 15px; border-left: 2px solid #93bccd; line-height: 1.75; word-break: keep-all; }
+.gratitude-note strong { display: block; color: var(--ink); font-size: 16px; font-weight: 600; letter-spacing: -.025em; }
+.gratitude-note > span { display: block; margin-top: 7px; color: var(--muted); font-size: 14px; }
 
 /* Collection controls stay close to the photographs. */
 .collection { border-top: 1px solid var(--line); padding-top: 30px; }
@@ -131,7 +133,7 @@ body:has(dialog[open]) { overflow: hidden; }
   .wrap { width: calc(100% - 64px); }
   .intro { gap: 30px; grid-template-columns: .9fr 1.15fr; }
   h1 { font-size: 46px; }
-  .intro-note { font-size: 14px; margin-top: 18px; }
+  .gratitude-note { margin-top: 20px; }
   .media-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 25px 16px; }
 }
 @media (max-width: 760px) {
@@ -146,7 +148,7 @@ body:has(dialog[open]) { overflow: hidden; }
   h1 span { margin-top: 12px; font-size: 28px; }
   .event-title { font-size: 13px; }
   .event-title br { display: none; }
-  .intro-note { display: none; }
+  .gratitude-note { margin-top: 20px; padding-left: 13px; }
   .collection { padding-top: 25px; }
   h2 { font-size: 25px; }
   .button { min-height: 44px; padding: 10px 15px; font-size: 13px; gap: 7px; }
