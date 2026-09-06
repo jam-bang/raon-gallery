@@ -1,0 +1,3 @@
+Pillow>=10.4,<13
+# Optional bundled ffmpeg when no system executable is available:
+imageio-ffmpeg>=0.6,<0.7

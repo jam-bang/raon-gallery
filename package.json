@@ -1,0 +1,14 @@
+{
+  "name": "raon-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "라온태권도 시범단 사진·영상 갤러리",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node --check public/app.js && node --check scripts/serve.mjs && node scripts/validate.mjs",
+    "test": "node --test tests/server.test.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
