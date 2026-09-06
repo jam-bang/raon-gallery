@@ -15,7 +15,7 @@
   width: 42%;
   height: 114%;
   border-radius: 50%;
-  background: radial-gradient(circle, #fff 7%, #baf0ff85 35%, #59cceb28 57%, transparent 73%);
+  background: radial-gradient(circle, #fff 7%, #baf3ff8f 35%, #29bbe52e 57%, transparent 73%);
   opacity: .72;
   pointer-events: none;
 }
@@ -42,7 +42,7 @@
   height: 5px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 3px 1px #fff, 0 0 8px 2px #9ce6ffb3, 0 0 16px 4px #6abadd4d;
+  box-shadow: 0 0 3px 1px #fff, 0 0 8px 2px #8de8ffbd, 0 0 17px 4px #22bce350;
 }
 .brand-aura-light::after {
   content: "";
@@ -68,11 +68,12 @@
   aspect-ratio: 1.65;
   isolation: isolate;
   overflow: hidden;
-  border: 1px solid #ffffffb8;
-  border-radius: 22px;
-  background: #dde5eb;
-  box-shadow: 0 14px 36px -18px #1c405b55, 0 1px 4px #183b5010;
+  border: 1px solid #ffffffd6;
+  border-radius: 24px;
+  background: #dbe9ee;
+  box-shadow: 0 18px 42px -23px #087da580, 0 0 0 1px #08a8d817;
 }
+.cover-carousel::after { content: ""; position: absolute; z-index: 3; top: 0; right: 24px; width: 64px; height: 3px; border-radius: 0 0 5px 5px; background: linear-gradient(90deg, var(--cyan) 0 78%, var(--red) 78%); opacity: .9; pointer-events: none; }
 .cover-slides, .cover-slide { position: absolute; inset: 0; }
 .cover-slides { overflow: hidden; }
 .cover-slide { opacity: 0; transition: opacity 1s ease; pointer-events: none; }
@@ -101,12 +102,12 @@
 }
 .cover-gallery-link { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-height: 44px; font-size: 14px; font-weight: 500; word-break: keep-all; }
 .cover-kind { color: #e2eaf0; font-size: 12px; font-weight: 400; letter-spacing: .07em; }
-.cover-controls { display: flex; flex-shrink: 0; gap: 5px; padding: 4px; border: 1px solid #ffffff40; border-radius: 100px; background: #18314355; backdrop-filter: blur(12px); }
+.cover-controls { display: flex; flex-shrink: 0; gap: 5px; padding: 4px; border: 1px solid #8ce5f45c; border-radius: 100px; background: #0c2d3b73; backdrop-filter: blur(12px); }
 .cover-controls button { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; color: #fff; background: transparent; line-height: 1; transition: background .18s; }
 .cover-controls button:hover:enabled { background: #ffffff24; }
 .cover-controls button:focus-visible, .cover-gallery-link:focus-visible { outline-color: #fff; outline-offset: 2px; }
 .cover-controls .icon { width: 18px; height: 18px; }
-#cover-toggle { background: #ffffffeb; color: #18364b; font-size: 14px; }
+#cover-toggle { background: #ffffffed; color: var(--blue-dark); font-size: 14px; box-shadow: 0 0 0 2px #08a8d824; }
 #cover-toggle:hover { background: #fff; }
 @media (max-width: 1100px) and (min-width: 761px) {
   .cover-carousel { aspect-ratio: 1.35; }
