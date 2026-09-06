@@ -15,7 +15,7 @@
 - H.264/AAC 웹용 영상 미리보기와 재생 컨트롤
 - 갤러리 접속 비밀번호 화면과 검색 엔진 수집 차단 설정
 - AES-256 암호로 보호한 사진·영상 전체 ZIP, 사진 ZIP, 영상 ZIP 다운로드
-- 공개 페이지에서는 개별 원본 다운로드를 숨겨 보호 ZIP을 거치도록 구성
+- 사진·영상 카드와 크게 보기 화면에서 개별 원본 다운로드
 - 프레임워크 및 프런트엔드 패키지 설치 없이 실행되는 HTML/CSS/JavaScript
 
 ## 실행
@@ -72,21 +72,23 @@ GitHub Pages는 `.github/workflows/pages.yml`로 배포합니다. 저장소의 P
 
 `public/auth.js`는 비밀번호 원문 대신 SHA-256 해시를 비교하고, 인증된 브라우저 탭에서만 갤러리 스크립트를 불러옵니다. 정적 페이지의 잠금 화면은 접근을 막는 1차 장치이며, 실제 원본은 AES-256 ZIP으로 한 번 더 보호합니다. ZIP 비밀번호는 갤러리 비밀번호와 같습니다.
 
-`public/config.js`는 개별 원본 경로를 비워 두고 암호화 ZIP이 있는 GitHub Release만 연결합니다.
+`public/config.js`는 개별 원본과 암호화 ZIP이 있는 GitHub Release를 연결합니다.
 
 ```js
 window.RAON_CONFIG = {
-  originalsBaseUrl: null,
+  originalsBaseUrl: 'https://github.com/jam-bang/raon-gallery/releases/download/eungam2-together-2026',
   videosBaseUrl: 'media/videos',
-  archivesBaseUrl: 'https://github.com/jeon-byeong-ik/raon-gallery/releases/download/eungam2-together-2026'
+  archivesBaseUrl: 'https://github.com/jam-bang/raon-gallery/releases/download/eungam2-together-2026'
 };
 ```
 
-- `originalsBaseUrl`: 공개 페이지에서는 `null`로 유지해 개별 원본 링크를 만들지 않습니다.
+- `originalsBaseUrl`: `gallery.json`의 파일명과 같은 개별 원본이 있는 GitHub Release 주소입니다.
 - `videosBaseUrl`: 저장소에 포함된 웹용 영상 미리보기 경로입니다.
 - `archivesBaseUrl`: 암호화 ZIP 세 개를 올린 GitHub Release 주소입니다.
 
 ZIP은 WinZip AES-256 방식입니다. 운영체제 기본 압축 도구가 열지 못하면 7-Zip, 반디집, WinRAR처럼 AES ZIP을 지원하는 앱을 사용합니다.
+
+GitHub Release의 개별 사진·영상은 파일 단위 암호화가 되지 않습니다. 갤러리 화면에서는 접속 비밀번호를 통과한 뒤에만 링크를 만들지만, Release의 직접 자산 주소를 아는 사용자는 페이지를 거치지 않고 내려받을 수 있습니다.
 
 원본, ZIP, 로컬 절대 경로, 도구 설치 폴더는 Git에서 제외합니다. 미리보기는 원본과 별개인 공개용 파생 파일이며 사진 EXIF와 영상 메타데이터를 복사하지 않습니다.
 

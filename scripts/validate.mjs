@@ -12,7 +12,7 @@ assert.match(index, /<script src="auth\.js" defer><\/script>/);
 assert(!index.includes('<script src="app.js"'), 'app.js must load only after access is granted');
 assert.match(auth, /febdc00125b065b552439e92fcdad028f514b1c9d8f8c8242ca78bdfd3d550db/);
 assert(!auth.includes("'5655'") && !auth.includes('"5655"'), 'Do not store the plain password in auth.js');
-assert.match(config, /originalsBaseUrl:\s*null/);
+assert.match(config, /originalsBaseUrl:\s*'https:\/\/github\.com\/jam-bang\/raon-gallery\/releases\/download\/eungam2-together-2026'/);
 assert.match(config, /releases\/download\/eungam2-together-2026/);
 assert(Array.isArray(manifest.items) && manifest.items.length > 0);
 const ids = new Set();
