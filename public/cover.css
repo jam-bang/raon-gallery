@@ -1,5 +1,4 @@
-/* Crop the supplied bitmap in its SVG wrapper and make white areas transparent.
-   Keep the original lettering, colors and bitmap file unchanged. */
+/* Keep the supplied Raon wordmark intact and give it a restrained halo. */
 .brand-aura {
   position: relative;
   display: block;
@@ -58,8 +57,8 @@
   width: 126px;
   height: 91px;
   flex-shrink: 0;
-  overflow: visible;
-  mix-blend-mode: multiply;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px #18364b14);
 }
 .cover-carousel {
   position: relative;
