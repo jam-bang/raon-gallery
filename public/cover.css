@@ -1,6 +1,59 @@
 /* Crop the supplied bitmap in its SVG wrapper and make white areas transparent.
    Keep the original lettering, colors and bitmap file unchanged. */
+.brand-aura {
+  position: relative;
+  display: block;
+  width: 126px;
+  height: 91px;
+  flex-shrink: 0;
+  isolation: isolate;
+}
+.brand-aura::before {
+  content: "";
+  position: absolute;
+  inset: -7px -14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #ffffffc4 8%, #bfe8f780 39%, #8bcbe920 58%, transparent 74%);
+  opacity: .65;
+  pointer-events: none;
+}
+.brand-aura-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 74%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) scale(1.45, .9);
+  pointer-events: none;
+}
+.brand-aura-light {
+  position: absolute;
+  inset: 0;
+  animation: logo-light-orbit 12s linear infinite;
+}
+.brand-aura-light::before {
+  content: "";
+  position: absolute;
+  left: calc(50% - 2.5px);
+  top: -2.5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 3px 1px #fff, 0 0 8px 2px #9ce6ffb3, 0 0 16px 4px #6abadd4d;
+}
+.brand-aura-light::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(transparent 0deg 275deg, #68bddb12 300deg, #8bd5ef66 342deg, #ffffffeb 360deg);
+  mask-image: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - .5px));
+}
+@keyframes logo-light-orbit { to { transform: rotate(1turn); } }
 .brand-logo {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 126px;
   height: 91px;
@@ -59,6 +112,7 @@
   .cover-gallery-link { font-size: 12px; }
 }
 @media (max-width: 760px) {
+  .brand-aura { width: 105px; height: 76px; }
   .brand-logo { width: 105px; height: 76px; }
   .cover-carousel { aspect-ratio: 1.75; border-radius: 17px; }
   .cover-caption { padding: 45px 16px 15px; gap: 10px; }
@@ -72,6 +126,8 @@
   .cover-controls button { width: 38px; height: 38px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .brand-aura-light { animation: none; }
+  .brand-aura-light::after { opacity: .4; }
   .cover-slide { transition: none; }
   .cover-slide img { animation: none; }
 }
