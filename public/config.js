@@ -3,5 +3,8 @@
 window.RAON_CONFIG = {
   originalsBaseUrl: 'https://github.com/jam-bang/raon-gallery/releases/download/eungam2-together-2026',
   videosBaseUrl: 'media/videos',
-  archivesBaseUrl: 'https://github.com/jam-bang/raon-gallery/releases/download/eungam2-together-2026'
+  archivesBaseUrl: 'https://github.com/jam-bang/raon-gallery/releases/download/eungam2-together-2026',
+  analyticsBaseUrl: 'https://raon-gallery-logs.jambang-core-ai.chatgpt.site'
 };
+
+

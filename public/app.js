@@ -29,6 +29,7 @@ function icon(name) {
 function wireDownload(anchor, url, name) {
   anchor.href = url;
   anchor.download = name;
+  anchor.dataset.downloadFile = name;
   // External file hosts should send Content-Disposition: attachment.
   if (new URL(url).origin !== location.origin) { anchor.target = '_blank'; anchor.rel = 'noopener'; }
   else { anchor.removeAttribute('target'); anchor.removeAttribute('rel'); }
@@ -135,3 +136,4 @@ async function init() {
   }
 }
 init();
+

@@ -27,6 +27,10 @@
       <h2 id="access-title">라온의 순간을<br>안전하게 보관합니다.</h2>
       <p class="access-copy">행사에 함께한 가족을 위한 사진·영상 갤러리입니다.<br>전달받은 비밀번호를 입력해 주세요.</p>
       <form id="access-form" class="access-form">
+        <div class="access-field">
+          <label for="access-name">이름 또는 가족명 <span>선택</span></label>
+          <input id="access-name" class="access-name-input" name="visitor-name" type="text" maxlength="40" autocomplete="name" placeholder="예: 지후 가족">
+        </div>
         <label for="access-password">갤러리 비밀번호</label>
         <div class="access-input-row">
           <input id="access-password" name="password" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="current-password" required aria-describedby="access-message">
@@ -34,7 +38,7 @@
         </div>
         <p id="access-message" class="access-message" role="alert" aria-live="polite"></p>
       </form>
-      <p class="access-footnote"><span aria-hidden="true">●</span> 사진과 영상은 허가된 가족 안에서만 공유해 주세요.</p>
+      <p class="access-footnote"><span aria-hidden="true">●</span> 선택 입력한 이름·가족명과 이용 시각, 기기 종류, 다운로드 파일명만 기록합니다. 비밀번호와 IP 주소는 저장하지 않습니다.</p>
       <noscript><p class="access-message">갤러리를 보려면 브라우저에서 JavaScript를 활성화해 주세요.</p></noscript>
     </div>
   </section>
@@ -96,3 +100,4 @@
   <noscript><p class="wrap">갤러리를 보려면 브라우저에서 JavaScript를 활성화해 주세요.</p></noscript>
 </body>
 </html>
+
