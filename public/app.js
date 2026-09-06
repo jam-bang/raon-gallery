@@ -17,6 +17,15 @@ function element(tag, className, text) {
   if (text !== undefined) node.textContent = text;
   return node;
 }
+function icon(name) {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('class', 'icon');
+  svg.setAttribute('aria-hidden', 'true');
+  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+  use.setAttribute('href', `#icon-${name}`);
+  svg.append(use);
+  return svg;
+}
 function wireDownload(anchor, url, name) {
   anchor.href = url;
   anchor.download = name;
@@ -46,7 +55,8 @@ function renderGrid() {
     meta.append(info);
     const url = assetUrl(config.originalsBaseUrl, item.name);
     if (url) {
-      const link = element('a', 'card-download', '↓');
+      const link = element('a', 'card-download');
+      link.append(icon('download'));
       link.setAttribute('aria-label', `${item.name} 원본 다운로드`);
       wireDownload(link, url, item.name); meta.append(link);
     }
@@ -104,9 +114,7 @@ async function init() {
     state.items = manifest.items; state.archives = manifest.archives;
     const photos = state.items.filter((item) => item.type === 'photo');
     $('#count-all').textContent = state.items.length; $('#count-photo').textContent = photos.length; $('#count-video').textContent = state.items.length - photos.length; $('#total-count').textContent = state.items.length;
-    const cover = photos.find((item) => item.id === manifest.coverId) || photos[0];
-    if (cover) $('#cover-image').src = cover.preview;
-    else $('.cover').hidden = true;
+    window.initCoverCarousel(state.items, config);
     $('#collection-note').textContent = config.originalsBaseUrl ? '미리보기는 가볍게, 다운로드는 원본으로.' : '사진을 누르면 크게 볼 수 있어요.';
     const availableArchives = state.archives.filter((archive) => assetUrl(config.archivesBaseUrl, archive.name));
     $('#download-all').disabled = !availableArchives.length;
@@ -117,7 +125,7 @@ async function init() {
     for (const archive of availableArchives) {
       const link = element('a', 'archive-link'); const copy = element('span', '', archive.label);
       copy.append(element('small', '', `${archive.count}개 · ZIP · ${size(archive.bytes)}`));
-      link.append(copy, element('span', '', '↓'));
+      link.append(copy, icon('download'));
       wireDownload(link, assetUrl(config.archivesBaseUrl, archive.name), archive.name); $('#archive-list').append(link);
     }
     renderGrid();

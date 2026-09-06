@@ -1,0 +1,77 @@
+/* Crop the supplied bitmap in its SVG wrapper and make white areas transparent.
+   Keep the original lettering, colors and bitmap file unchanged. */
+.brand-logo {
+  display: block;
+  width: 126px;
+  height: 91px;
+  flex-shrink: 0;
+  overflow: visible;
+  mix-blend-mode: multiply;
+}
+.cover-carousel {
+  position: relative;
+  aspect-ratio: 1.65;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #ffffffb8;
+  border-radius: 22px;
+  background: #dde5eb;
+  box-shadow: 0 14px 36px -18px #1c405b55, 0 1px 4px #183b5010;
+}
+.cover-slides, .cover-slide { position: absolute; inset: 0; }
+.cover-slides { overflow: hidden; }
+.cover-slide { opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+.cover-slide.is-visible { opacity: 1; }
+.cover-slide img, .cover-slide video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cover-slide img { animation: cover-drift var(--slide-duration, 7s) ease-out both; animation-play-state: paused; }
+.cover-slide.is-visible img { animation-play-state: running; }
+.is-paused .cover-slide img { animation-play-state: paused; }
+@keyframes cover-drift {
+  from { transform: scale(1.015) translateX(-0.3%); }
+  to { transform: scale(1.065) translateX(0.3%); }
+}
+.cover-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px;
+  padding: 64px 24px 22px;
+  color: #fff;
+  background: linear-gradient(transparent, #071c2edb);
+}
+.cover-gallery-link { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-height: 44px; font-size: 14px; font-weight: 500; word-break: keep-all; }
+.cover-kind { color: #e2eaf0; font-size: 12px; font-weight: 400; letter-spacing: .07em; }
+.cover-controls { display: flex; flex-shrink: 0; gap: 5px; padding: 4px; border: 1px solid #ffffff40; border-radius: 100px; background: #18314355; backdrop-filter: blur(12px); }
+.cover-controls button { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; color: #fff; background: transparent; line-height: 1; transition: background .18s; }
+.cover-controls button:hover:enabled { background: #ffffff24; }
+.cover-controls button:focus-visible, .cover-gallery-link:focus-visible { outline-color: #fff; outline-offset: 2px; }
+.cover-controls .icon { width: 18px; height: 18px; }
+#cover-toggle { background: #ffffffeb; color: #18364b; font-size: 14px; }
+#cover-toggle:hover { background: #fff; }
+@media (max-width: 1100px) and (min-width: 761px) {
+  .cover-carousel { aspect-ratio: 1.35; }
+  .cover-caption { padding: 52px 16px 16px; gap: 8px; }
+  .cover-gallery-link { font-size: 12px; }
+}
+@media (max-width: 760px) {
+  .brand-logo { width: 105px; height: 76px; }
+  .cover-carousel { aspect-ratio: 1.75; border-radius: 17px; }
+  .cover-caption { padding: 45px 16px 15px; gap: 10px; }
+  .cover-gallery-link { font-size: 13px; }
+}
+@media (max-width: 420px) {
+  .cover-caption { padding-inline: 12px; }
+  .cover-kind { display: none; }
+  .cover-gallery-link { font-size: 12px; }
+  .cover-controls { gap: 1px; padding: 3px; }
+  .cover-controls button { width: 38px; height: 38px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-slide { transition: none; }
+  .cover-slide img { animation: none; }
+}

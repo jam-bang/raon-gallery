@@ -6,6 +6,10 @@
 
 ## 기능
 
+- 제공된 라온태권도장 로고를 사용한 헤더
+- 무작위 하이라이트: 사진 2장(각 6초)과 무음 영상 1개(최대 9초)를 부드럽게 전환
+- 하이라이트 일시정지·재개 및 이전·다음 이동. 화면 밖, 다른 탭, 모달이 열려 있을 때 자동 중지
+- 동작 줄이기 설정에서는 하이라이트 자동 재생과 사진 확대 효과를 기본 중지
 - 반응형 사진·영상 그리드와 전체 / 사진 / 영상 필터
 - 사진 확대, 이전·다음 이동, 키보드 방향키, Esc 닫기, 사진 좌우 스와이프
 - H.264/AAC 웹용 영상 미리보기와 재생 컨트롤
@@ -62,7 +66,9 @@ python scripts/prepare_media.py --source "../셀렉" --snapshot
 
 ## 공개 배포와 원본 연결
 
-정적 웹 루트는 **`public/`** 입니다. 내부 주소는 상대 경로이므로 `/raon-gallery/` 같은 하위 경로에서도 동작합니다. GitHub 저장소에 소스를 올리는 것만으로 웹사이트가 게시되는 것은 아닙니다. 호스팅에서 `public/` 폴더를 게시해야 합니다.
+정적 웹 루트는 **`public/`** 입니다. 내부 주소는 상대 경로이므로 `/raon-gallery/` 같은 하위 경로에서도 동작합니다.
+
+GitHub Pages는 `.github/workflows/pages.yml`로 배포합니다. 저장소의 Pages 소스를 **GitHub Actions**로 설정하면 `main`에 올릴 때 검사 후 `public/`만 자동 게시됩니다. 원본·ZIP·로컬 설정·도구 폴더는 Git에서 제외되어 Pages 배포에 포함되지 않습니다.
 
 `public/config.js`의 다음 설정으로 원본과 ZIP의 실제 저장 주소를 연결합니다.
 
@@ -97,6 +103,9 @@ npm test
 public/
   index.html           페이지
   styles.css           화면·반응형 스타일
+  cover.css            로고·하이라이트 스타일
+  cover.js             하이라이트 자동 전환
+  assets/raon-logo.png  제공된 도장 로고 원본
   app.js               갤러리·미리보기·다운로드 동작
   config.js            공개 저장 주소
   gallery.json         미디어 목록
