@@ -12,7 +12,8 @@ test('byte ranges cover seeking, suffixes and invalid requests', () => {
   for (const range of ['bytes=10-', 'bytes=4-1', 'bytes=-0', 'bytes=-', 'bytes=0-1,4-5']) assert.equal(parseRange(range, 10), false);
 });
 test('static page and partial media responses work', async () => {
-  const full = await fetch(`${origin}/index.html`); assert.equal(full.status, 200); const text = await full.text(); assert.match(text, /라온의 순간/);
+  const full = await fetch(`${origin}/index.html`); assert.equal(full.status, 200); const text = await full.text(); assert.match(text, /라온의 순간/); assert.match(text, /data-access="locked"/); assert.match(text, /auth\.js/);
+  const auth = await fetch(`${origin}/auth.js`); assert.equal(auth.status, 200); assert.match(await auth.text(), /crypto\.subtle\.digest/);
   const partial = await fetch(`${origin}/index.html`, { headers: { Range: 'bytes=0-14' } }); assert.equal(partial.status, 206); assert.equal(await partial.text(), '<!doctype html>');
   const head = await fetch(`${origin}/index.html`, { method: 'HEAD' }); assert.equal(head.status, 200); assert.equal(await head.text(), '');
 });

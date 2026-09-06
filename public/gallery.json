@@ -907,19 +907,19 @@
       "name": "raon-eungam-all.zip",
       "label": "사진·영상 전체 다운로드",
       "count": 89,
-      "bytes": 2047978043
+      "bytes": 2047982493
     },
     {
       "name": "raon-eungam-photos.zip",
       "label": "사진만 다운로드",
       "count": 81,
-      "bytes": 703553339
+      "bytes": 703557389
     },
     {
       "name": "raon-eungam-videos.zip",
       "label": "영상만 다운로드",
       "count": 8,
-      "bytes": 1344424726
+      "bytes": 1344425126
     }
   ]
 }

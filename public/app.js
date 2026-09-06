@@ -114,12 +114,12 @@ async function init() {
     state.items = manifest.items; state.archives = manifest.archives;
     const photos = state.items.filter((item) => item.type === 'photo');
     $('#count-all').textContent = state.items.length; $('#count-photo').textContent = photos.length; $('#count-video').textContent = state.items.length - photos.length; $('#total-count').textContent = state.items.length;
-    window.initCoverCarousel(state.items, config);
-    $('#collection-note').textContent = config.originalsBaseUrl ? '미리보기는 가볍게, 다운로드는 원본으로.' : '사진을 누르면 크게 볼 수 있어요.';
     const availableArchives = state.archives.filter((archive) => assetUrl(config.archivesBaseUrl, archive.name));
+    window.initCoverCarousel(state.items, config);
+    $('#collection-note').textContent = availableArchives.length ? '사진을 누르면 크게 보고, 전체 원본은 ZIP으로 받을 수 있어요.' : '사진을 누르면 크게 볼 수 있어요.';
     $('#download-all').disabled = !availableArchives.length;
     const pending = [];
-    if (!config.originalsBaseUrl || !availableArchives.length) pending.push('원본 다운로드');
+    if (!availableArchives.length) pending.push('전체 다운로드');
     if (state.items.some(item => item.type === 'video') && !config.videosBaseUrl) pending.push('영상 미리보기');
     if (pending.length) $('#status').textContent = `${pending.join('와 ')}를 준비하고 있습니다. 준비되는 대로 연결됩니다.`;
     for (const archive of availableArchives) {

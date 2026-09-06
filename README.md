@@ -13,9 +13,9 @@
 - 반응형 사진·영상 그리드와 전체 / 사진 / 영상 필터
 - 사진 확대, 이전·다음 이동, 키보드 방향키, Esc 닫기, 사진 좌우 스와이프
 - H.264/AAC 웹용 영상 미리보기와 재생 컨트롤
-- 개별 원본 다운로드
-- 사진·영상 전체 ZIP, 사진 ZIP, 영상 ZIP 다운로드
-- 원본 저장 주소 미연결 시 다운로드 버튼 비활성화와 준비 안내
+- 갤러리 접속 비밀번호 화면과 검색 엔진 수집 차단 설정
+- AES-256 암호로 보호한 사진·영상 전체 ZIP, 사진 ZIP, 영상 ZIP 다운로드
+- 공개 페이지에서는 개별 원본 다운로드를 숨겨 보호 ZIP을 거치도록 구성
 - 프레임워크 및 프런트엔드 패키지 설치 없이 실행되는 HTML/CSS/JavaScript
 
 ## 실행
@@ -28,7 +28,7 @@ npm start
 
 `http://127.0.0.1:4173`에서 확인합니다. HTML 파일을 직접 더블클릭하면 JSON 로딩이 브라우저에서 제한될 수 있으므로 HTTP 서버를 사용합니다.
 
-저장소에는 웹용 사진·영상 미리보기가 포함됩니다. 다른 PC에서 복제해 실행하면 미리보기를 바로 볼 수 있습니다. 원본과 ZIP은 별도이며, 아래 가져오기를 실행하거나 원본 저장소를 연결해야 다운로드가 활성화됩니다.
+저장소에는 웹용 사진·영상 미리보기가 포함됩니다. 다른 PC에서 복제해 실행하면 미리보기를 바로 볼 수 있습니다. 공개 페이지의 ZIP은 GitHub Release에서 내려받습니다.
 
 ## 사진·영상 가져오기
 
@@ -64,27 +64,29 @@ python scripts/prepare_media.py --source "../셀렉" --snapshot
 
 파일이 추가되거나 변경되면 가져오기를 다시 실행하세요. 완료된 미리보기는 크기·수정 시각 기준으로 재사용됩니다. ZIP은 현재 선택으로 다시 만듭니다. 제거한 항목의 예전 미리보기 파일은 자동 삭제하지 않으며 `gallery.json`에서 빠져 화면에 표시되지 않습니다. 공개 저장소에서 해당 파일 자체까지 제거하려면 별도로 정리해야 합니다.
 
-## 공개 배포와 원본 연결
+## 공개 배포와 다운로드 보호
 
 정적 웹 루트는 **`public/`** 입니다. 내부 주소는 상대 경로이므로 `/raon-gallery/` 같은 하위 경로에서도 동작합니다.
 
 GitHub Pages는 `.github/workflows/pages.yml`로 배포합니다. 저장소의 Pages 소스를 **GitHub Actions**로 설정하면 `main`에 올릴 때 검사 후 `public/`만 자동 게시됩니다. 원본·ZIP·로컬 설정·도구 폴더는 Git에서 제외되어 Pages 배포에 포함되지 않습니다.
 
-`public/config.js`의 다음 설정으로 원본과 ZIP의 실제 저장 주소를 연결합니다.
+`public/auth.js`는 비밀번호 원문 대신 SHA-256 해시를 비교하고, 인증된 브라우저 탭에서만 갤러리 스크립트를 불러옵니다. 정적 페이지의 잠금 화면은 접근을 막는 1차 장치이며, 실제 원본은 AES-256 ZIP으로 한 번 더 보호합니다. ZIP 비밀번호는 갤러리 비밀번호와 같습니다.
+
+`public/config.js`는 개별 원본 경로를 비워 두고 암호화 ZIP이 있는 GitHub Release만 연결합니다.
 
 ```js
 window.RAON_CONFIG = {
-  originalsBaseUrl: 'https://YOUR-MEDIA-HOST/raon/originals',
+  originalsBaseUrl: null,
   videosBaseUrl: 'media/videos',
-  archivesBaseUrl: 'https://YOUR-MEDIA-HOST/raon/archives'
+  archivesBaseUrl: 'https://github.com/jeon-byeong-ik/raon-gallery/releases/download/eungam2-together-2026'
 };
 ```
 
-- `originalsBaseUrl`: `gallery.json`의 `name`에 해당하는 선택 원본들을 업로드한 폴더 주소
-- `videosBaseUrl`: 저장소에 포함된 웹용 영상 경로. 기본값 그대로 사용 가능
-- `archivesBaseUrl`: `public/media/archives/`에서 생성된 ZIP 세 개를 업로드한 폴더 주소
+- `originalsBaseUrl`: 공개 페이지에서는 `null`로 유지해 개별 원본 링크를 만들지 않습니다.
+- `videosBaseUrl`: 저장소에 포함된 웹용 영상 미리보기 경로입니다.
+- `archivesBaseUrl`: 암호화 ZIP 세 개를 올린 GitHub Release 주소입니다.
 
-원본/ZIP 저장소는 외부 링크 접근을 허용해야 하며 `Content-Disposition: attachment`를 설정해야 외부 도메인에서도 다운로드 동작이 일관됩니다. 영상 호스트를 바꾸는 경우 올바른 `video/mp4` MIME과 HTTP Range 지원도 필요합니다. 외부 저장 주소가 없으면 다운로드 링크를 노출하지 않습니다.
+ZIP은 WinZip AES-256 방식입니다. 운영체제 기본 압축 도구가 열지 못하면 7-Zip, 반디집, WinRAR처럼 AES ZIP을 지원하는 앱을 사용합니다.
 
 원본, ZIP, 로컬 절대 경로, 도구 설치 폴더는 Git에서 제외합니다. 미리보기는 원본과 별개인 공개용 파생 파일이며 사진 EXIF와 영상 메타데이터를 복사하지 않습니다.
 
@@ -102,6 +104,7 @@ npm test
 ```text
 public/
   index.html           페이지
+  auth.js              접속 비밀번호 확인과 앱 로딩
   styles.css           화면·반응형 스타일
   cover.css            로고·하이라이트 스타일
   cover.js             하이라이트 자동 전환
