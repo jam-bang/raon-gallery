@@ -2,27 +2,30 @@
 .brand-aura {
   position: relative;
   display: block;
-  width: 126px;
-  height: 91px;
+  width: 218px;
+  height: 81px;
   flex-shrink: 0;
   isolation: isolate;
 }
 .brand-aura::before {
   content: "";
   position: absolute;
-  inset: -7px -14px;
+  right: -5%;
+  top: -7%;
+  width: 42%;
+  height: 114%;
   border-radius: 50%;
-  background: radial-gradient(ellipse, #ffffffc4 8%, #bfe8f780 39%, #8bcbe920 58%, transparent 74%);
-  opacity: .65;
+  background: radial-gradient(circle, #fff 7%, #baf0ff85 35%, #59cceb28 57%, transparent 73%);
+  opacity: .72;
   pointer-events: none;
 }
 .brand-aura-orbit {
   position: absolute;
-  left: 50%;
+  right: 1%;
   top: 50%;
-  width: 74%;
+  width: 35%;
   aspect-ratio: 1;
-  transform: translate(-50%, -50%) scale(1.45, .9);
+  transform: translateY(-50%);
   pointer-events: none;
 }
 .brand-aura-light {
@@ -54,8 +57,8 @@
   position: relative;
   z-index: 1;
   display: block;
-  width: 126px;
-  height: 91px;
+  width: 218px;
+  height: 81px;
   flex-shrink: 0;
   object-fit: contain;
   filter: drop-shadow(0 1px 1px #18364b14);
@@ -111,8 +114,10 @@
   .cover-gallery-link { font-size: 12px; }
 }
 @media (max-width: 760px) {
-  .brand-aura { width: 105px; height: 76px; }
-  .brand-logo { width: 105px; height: 76px; }
+  .brand-aura { width: 74px; height: 74px; }
+  .brand-aura::before { right: -9%; top: -9%; width: 118%; height: 118%; }
+  .brand-aura-orbit { left: 50%; right: auto; width: 82%; transform: translate(-50%, -50%); }
+  .brand-logo { width: 74px; height: 74px; }
   .cover-carousel { aspect-ratio: 1.75; border-radius: 17px; }
   .cover-caption { padding: 45px 16px 15px; gap: 10px; }
   .cover-gallery-link { font-size: 13px; }
