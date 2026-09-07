@@ -27,18 +27,22 @@
       <h2 id="access-title">라온의 순간을<br>안전하게 보관합니다.</h2>
       <p class="access-copy">행사에 함께한 가족을 위한 사진·영상 갤러리입니다.<br>전달받은 비밀번호를 입력해 주세요.</p>
       <form id="access-form" class="access-form">
-        <div class="access-field">
-          <label for="access-name">이름 또는 가족명 <span>선택</span></label>
-          <input id="access-name" class="access-name-input" name="visitor-name" type="text" maxlength="40" autocomplete="name" placeholder="예: 홍길동 엄마 / 김사범">
-        </div>
         <label for="access-password">갤러리 비밀번호</label>
         <div class="access-input-row">
           <input id="access-password" name="password" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="current-password" required aria-describedby="access-message">
           <button type="submit">입장하기 <span aria-hidden="true">→</span></button>
         </div>
         <p id="access-message" class="access-message" role="alert" aria-live="polite"></p>
+        <details class="access-identity">
+          <summary><span>이름 또는 가족명 남기기</span><small>선택 사항</small></summary>
+          <div class="access-identity-panel">
+            <label for="access-name">이름 또는 가족명</label>
+            <input id="access-name" class="access-name-input" name="visitor-name" type="text" maxlength="40" autocomplete="name" placeholder="예: 홍길동 엄마 / 김사범">
+            <p>입력하지 않아도 갤러리를 이용할 수 있습니다.</p>
+          </div>
+        </details>
       </form>
-      <p class="access-footnote"><span aria-hidden="true">●</span> 원활한 갤러리 운영을 위해 간단한 이용 기록을 남기며, 이름 입력은 선택 사항입니다.</p>
+      <p class="access-footnote"><span aria-hidden="true">●</span> 원활한 갤러리 운영을 위해 간단한 이용 기록을 남깁니다.</p>
       <noscript><p class="access-message">갤러리를 보려면 브라우저에서 JavaScript를 활성화해 주세요.</p></noscript>
     </div>
   </section>
@@ -100,7 +104,3 @@
   <noscript><p class="wrap">갤러리를 보려면 브라우저에서 JavaScript를 활성화해 주세요.</p></noscript>
 </body>
 </html>
-
-
-
-

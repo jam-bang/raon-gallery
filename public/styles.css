@@ -44,11 +44,18 @@ html[data-access="locked"] body > :not(.access-gate) { visibility: hidden; }
 .access-panel h2 { margin-top: 15px; font-size: 34px; line-height: 1.28; letter-spacing: -.05em; }
 .access-copy { margin-top: 17px; color: var(--muted); font-size: 14px; line-height: 1.8; word-break: keep-all; }
 .access-form { margin-top: 27px; }
-.access-field { margin-bottom: 15px; }
-.access-field label span { margin-left: 5px; color: var(--cyan); font-size: 10px; font-weight: 750; }
-.access-name-input { width: 100%; height: 48px; padding: 0 16px; border: 1px solid #cbdde4; border-radius: 12px; background: #fff; color: var(--ink); font-size: 15px; outline: none; transition: border-color .18s, box-shadow .18s; }
-.access-name-input::placeholder { color: #a2b1b8; }
-.access-name-input:focus { border-color: var(--cyan); box-shadow: 0 0 0 4px #08a8d818; }
+.access-identity { margin-top: 1px; }
+.access-identity summary { display: flex; align-items: center; gap: 7px; width: max-content; max-width: 100%; color: #7a8d96; font-size: 11.5px; cursor: pointer; list-style: none; user-select: none; }
+.access-identity summary::-webkit-details-marker { display: none; }
+.access-identity summary::before { content: "+"; display: grid; place-items: center; width: 16px; height: 16px; border: 1px solid #cbdde4; border-radius: 50%; color: var(--blue); font-size: 12px; line-height: 1; }
+.access-identity[open] summary::before { content: "−"; }
+.access-identity summary small { color: #9aabb2; font-size: 10px; font-weight: 500; }
+.access-identity-panel { margin-top: 10px; padding: 13px; border: 1px solid #e0eaee; border-radius: 12px; background: #f7fafb; }
+.access-identity-panel label { margin-bottom: 7px; color: #60747e; font-size: 11px; }
+.access-name-input { width: 100%; height: 44px; padding: 0 14px; border: 1px solid #cfdee4; border-radius: 10px; background: #fff; color: var(--ink); font-size: 14px; outline: none; transition: border-color .18s, box-shadow .18s; }
+.access-name-input::placeholder { color: #a8b5bb; }
+.access-name-input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px #08a8d814; }
+.access-identity-panel p { margin-top: 7px; color: #8a9ba3; font-size: 10.5px; line-height: 1.5; }
 .access-form label { display: block; margin-bottom: 8px; color: #425966; font-size: 12px; font-weight: 650; }
 .access-input-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
 .access-input-row input { min-width: 0; height: 52px; padding: 0 17px; border: 1px solid #cbdde4; border-radius: 12px; background: #fff; color: var(--ink); font-size: 20px; letter-spacing: .2em; outline: none; transition: border-color .18s, box-shadow .18s; }
@@ -243,4 +250,3 @@ body:has(dialog[open]) { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
-
